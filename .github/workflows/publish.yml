@@ -1,7 +1,10 @@
 name: Publish
 
 on:
-  push:
+  workflow_run:
+    workflows: ['Build, check lint and format']
+    types:
+      - completed
     branches:
       - main
 
