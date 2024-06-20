@@ -29,12 +29,14 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "lint": "tsc --noEmit --strict",
     "format:check": "prettier --check .",
     "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "prettier": "^3.3.2",
+    "tsc": "^2.0.4",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
