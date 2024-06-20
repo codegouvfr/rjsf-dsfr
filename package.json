@@ -1,0 +1,63 @@
+{
+  "name": "@codegouvfr/rjsf-dsfr",
+  "version": "0.1.0",
+  "description": "react-jsonschema-form for the DSFR",
+  "repository": "git@github.com:codegouvfr/rjsf-dsfr.git",
+  "author": "Emile Rolley <emile.rolley@tuta.io>",
+  "keywords": [
+    "DSFR",
+    "react-jsonschema-form",
+    "react",
+    "jsonschema",
+    "form",
+    "form-builder"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "format:check": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "prettier": "^3.3.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  },
+  "tsup": {
+    "entry": [
+      "./src/index.tsx"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "sourcemap": true,
+    "clean": true,
+    "dts": true
+  },
+  "dependencies": {
+    "@codegouvfr/react-dsfr": "^1.9.20",
+    "@rjsf/core": "^5.18.4",
+    "@rjsf/utils": "^5.18.4",
+    "@rjsf/validator-ajv8": "^5.18.4",
+    "react": "^18.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
