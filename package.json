@@ -34,6 +34,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "react": "^18.3.1",
     "@types/react": "^18.3.3",
     "prettier": "^3.3.2",
     "tsc": "^2.0.4",
@@ -56,8 +57,10 @@
     "@codegouvfr/react-dsfr": "^1.9.20",
     "@rjsf/core": "^5.18.4",
     "@rjsf/utils": "^5.18.4",
-    "@rjsf/validator-ajv8": "^5.18.4",
-    "react": "^18.3.1"
+    "@rjsf/validator-ajv8": "^5.18.4"
+  },
+  "peerDependencies": {
+    "react": "^18.3.3"
   },
   "publishConfig": {
     "access": "public"
