@@ -69,7 +69,7 @@ export const templatesDSFR = {
 function SubmitButton(_props: SubmitButtonProps) {
   return (
     <div className="flex w-full fr-mt-2w">
-      <Button>Lancer le calcul</Button>
+      <Button>Envoyer</Button>
     </div>
   )
 }
