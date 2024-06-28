@@ -124,3 +124,13 @@ The following options can be set for fields of type `array`:
 >        "ui:hideTitle": true,
 > ...
 > ```
+
+## Development
+
+Launch the playground to play with the DSFR theme :
+
+```sh
+cd demo
+yarn
+yarn start
+```
