@@ -48,6 +48,21 @@ export default function Form() {
 }
 ```
 
+## Notes on writing schemas
+
+### Title
+
+To have different titles for the same object definition, the `title` property
+must not be defined inside `kind` properties of the object definition but just
+before the `$ref` of the calling parent :
+
+```json
+"categorieEquivalenceLoyerD84216": {
+  "title": "Catégorie de personnes résidant en logement-foyer",
+  "$ref": "#/definitions/categorie_equivalence_loyer_allocation_logement_foyer"
+}
+```
+
 ### UI Options
 
 As described in the [react-jsonschema-form
@@ -60,12 +75,24 @@ for `rjsf-dsfr`.
 > You can have a look to a real world example
 > [here](https://github.com/CatalaLang/catala-web-assets/blob/main/assets/aides_logement_ui_fr.schema.jsx)
 
+#### Title
+
+The titles must not be defined inside `"kind"` properties of the object
+definition but just before the `"$ref"` of the calling parent:
+
+```json
+"categorieEquivalenceLoyerD84216": {
+  "title": "Catégorie de personnes résidant en logement-foyer",
+  "$ref": "#/definitions/categorie_equivalence_loyer_allocation_logement_foyer"
+}
+```
+
 #### Global field options
 
 The following options can be set for any field in the `uiSchema`:
 
 - `ui:heading`: set the heading level for the field's title (available values: `h2`, `h3`, `h4`, `h5`, `h6`)
-- `ui:hideTitle`: hide the field's title
+- `ui:hideTitle`: hide the field's title.
 
 #### Specific field options
 
@@ -82,3 +109,17 @@ The following options can be set for fields of type `array`:
 > [`Tabs`](https://components.react-dsfr.codegouv.studio/?path=/docs/components-tabs--default)
 > component. Each tab is labeled with the `ui:tabLabel` value and the last tab
 > contains the _Add_ button.
+
+> [!IMPORTANT]
+> The `ui:hideTitle` option it's needed for items of type `object` inside a
+> field of type `array` to hide the unique title of the array's items.
+>
+> Example:
+>
+> ```json
+> "personnesACharge": {
+>    "ui:tabLabel": "Personne",
+>    "items": {
+>        "ui:hideTitle": true,
+> ...
+> ```
