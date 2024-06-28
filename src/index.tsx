@@ -5,16 +5,41 @@ import {
   RJSFSchema,
   StrictRJSFSchema,
   FormContextType,
+  UiSchema,
 } from '@rjsf/utils'
 import defaultValidator from '@rjsf/validator-ajv8'
 import { Button } from '@codegouvfr/react-dsfr/Button'
 
 import WidgetCheckBox from './components/WidgetCheckBox'
 import WidgetSelect from './components/WidgetSelect'
-import TemplateArrayField from './components/TemplateArrayField'
+import TemplateArrayField, {
+  ArrayFieldUiOptionsDSFR,
+} from './components/TemplateArrayField'
 import TemplateBaseInput from './components/TemplateBaseInput'
 import TemplateField from './components/TemplateField'
 import TemplateTitleField from './components/TemplateTitleField'
+
+export type UiSchemaDSFR<
+  T = any,
+  S extends StrictRJSFSchema = RJSFSchema,
+  F extends FormContextType = any,
+> = UiSchema<T, S, F> & FieldUiOptionsDSFR & ArrayFieldUiOptionsDSFR
+
+/** Custom UI options for all fields */
+export type FieldUiOptionsDSFR = {
+  /** Set the heading level for the title */
+  'ui:heading'?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  /** To hide the title */
+  'ui:hideTitle'?: boolean
+}
+
+export type FormPropsDSFR<
+  T = any,
+  S extends StrictRJSFSchema = RJSFSchema,
+  F extends FormContextType = any,
+> = FormProps<T, S, F> & {
+  uiSchema?: UiSchemaDSFR<T, S, F>
+}
 
 /**
  * Form component with default DSFR widgets and templates.
@@ -27,7 +52,7 @@ export default function FormDSFR<
   T = any,
   S extends StrictRJSFSchema = RJSFSchema,
   F extends FormContextType = any,
->({ widgets, templates, validator, ...rest }: FormProps<T, S, F>) {
+>({ widgets, templates, validator, ...rest }: FormPropsDSFR<T, S, F>) {
   return (
     <Form
       validator={validator ?? defaultValidator}

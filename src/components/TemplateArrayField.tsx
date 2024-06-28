@@ -1,19 +1,39 @@
+import React from 'react'
+import { FrIconClassName, RiIconClassName } from '@codegouvfr/react-dsfr'
 import Button from '@codegouvfr/react-dsfr/Button'
 import Tabs from '@codegouvfr/react-dsfr/Tabs'
 import { ArrayFieldTemplateProps } from '@rjsf/utils'
-import React from 'react'
 
-const defaultAddIcon = 'fr-icon-add-circle-line'
-const defaultRemoveIcon = 'fr-icon-delete-line'
+import { UiSchemaDSFR } from '..'
 
+export type IconsDSFR = FrIconClassName | RiIconClassName
+
+/** Custom UI options for array fields */
+export type ArrayFieldUiOptionsDSFR = {
+  /** Icon for the add button */
+  'ui:addIcon'?: IconsDSFR
+  /** Icon for the remove button */
+  'ui:removeIcon'?: IconsDSFR
+  /** Label for tab component. */
+  'ui:tabLabel'?: string
+}
+
+/**
+ * Array field are displayed in a Tabs component where:
+ * - each tab corresponds to an element of the array,
+ * - the last tab is an "add" button,
+ * - tab label can be customized with `ui:tabLabel` and is numbered from 1,
+ */
 export default function ({
   title,
   uiSchema,
   items,
   canAdd,
   onAddClick,
-}: ArrayFieldTemplateProps & { removeIcon?: string; addIcon?: string }) {
-  const tabLabel = uiSchema !== undefined ? uiSchema['ui:tabLabel'] : 'Element'
+}: ArrayFieldTemplateProps & { uiSchema?: UiSchemaDSFR }) {
+  const tabLabel = uiSchema?.['ui:tabLabel'] ?? 'Element'
+  const removeIcon = uiSchema?.['ui:removeIcon'] ?? 'fr-icon-delete-line'
+  const addIcon = uiSchema?.['ui:addIcon'] ?? 'fr-icon-add-circle-line'
 
   return (
     <div className="form-group field">
@@ -27,11 +47,7 @@ export default function ({
                 content: (
                   <>
                     <Button
-                      iconId={
-                        uiSchema !== undefined
-                          ? uiSchema['ui:removeIcon']
-                          : defaultRemoveIcon
-                      }
+                      iconId={removeIcon}
                       onClick={element.onDropIndexClick(element.index)}
                       size="small"
                       priority="secondary"
@@ -49,11 +65,7 @@ export default function ({
                     <>
                       {canAdd && (
                         <Button
-                          iconId={
-                            uiSchema !== undefined
-                              ? uiSchema['ui:addIcon']
-                              : defaultAddIcon
-                          }
+                          iconId={addIcon}
                           onClick={onAddClick}
                           size="small"
                           priority="secondary"
