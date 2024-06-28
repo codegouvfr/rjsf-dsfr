@@ -24,3 +24,28 @@ yarn add @codegouvfr/rjsf-dsfr
 
 For now, the API matches the one from `react-jsonschema-form` and you can
 overrides some widgets (resp. templates) by specifying them in the props.
+
+```tsx
+import { RJSFSchema } from "@rjsf/utils";
+import FormDSFR from "@codegouvfr/rjsf-dsfr";
+import { customizeValidator } from "@rjsf/validator-ajv8";
+import frenchLocalizer from "ajv-i18n/localize/fr";
+
+const validator = customizeValidator({}, frenchLocalizer);
+
+const schema: RJSFSchema = {
+  type: "object",
+  properties: {
+    nom: { title: "Nom", type: "string", minLength: 2 },
+    prenom: { title: "Prénom", type: "string" },
+    ddn: { title: "Date de naissance", type: "string", format: "date" },
+  },
+  required: ["nom"],
+};
+
+export default function Form() {
+  return (
+      <FormDSFR schema={schema} validator={validator} />
+  );
+}
+```
