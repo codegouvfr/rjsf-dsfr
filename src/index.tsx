@@ -90,11 +90,14 @@ export const templatesDSFR = {
   TitleFieldTemplate: TemplateTitleField,
 }
 
-// TODO: add to props
-function SubmitButton(_props: SubmitButtonProps) {
+function SubmitButton({ uiSchema }: SubmitButtonProps) {
+  const buttonOptions = uiSchema?.['ui:options']?.submitButtonOptions
   return (
+    // NOTE: should the div stay here? Probably not.
     <div className="flex w-full fr-mt-2w">
-      <Button>Lancer le calcul</Button>
+      <Button className={buttonOptions?.props?.className ?? ''}>
+        {buttonOptions?.submitText ?? 'Envoyer'}
+      </Button>
     </div>
   )
 }
