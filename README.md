@@ -50,19 +50,6 @@ export default function Form() {
 
 ## Notes on writing schemas
 
-### Title
-
-To have different titles for the same object definition, the `title` property
-must not be defined inside `kind` properties of the object definition but just
-before the `$ref` of the calling parent :
-
-```json
-"categorieEquivalenceLoyerD84216": {
-  "title": "Catégorie de personnes résidant en logement-foyer",
-  "$ref": "#/definitions/categorie_equivalence_loyer_allocation_logement_foyer"
-}
-```
-
 ### UI Options
 
 As described in the [react-jsonschema-form
