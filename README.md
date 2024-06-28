@@ -102,7 +102,8 @@ The following options can be set for fields of type `array`:
 
 - `ui:addIcon`: set the [DSFR icon id](https://react-dsfr.codegouv.studio/icons) for the _Add_ button
 - `ui:removeIcon`: set the [DSFR icon id](https://react-dsfr.codegouv.studio/icons) for the _Remove_ button
-- `ui:tabLabel`: set the label for the tab in the array field
+- `ui:tabLabel`: set the label for the tab in the array field (it needs to be
+  defined at the root of the `array` field)
 
 > [!NOTE]
 > By default, array fields are displayed in a
