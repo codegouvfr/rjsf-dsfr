@@ -26,26 +26,59 @@ For now, the API matches the one from `react-jsonschema-form` and you can
 overrides some widgets (resp. templates) by specifying them in the props.
 
 ```tsx
-import { RJSFSchema } from "@rjsf/utils";
-import FormDSFR from "@codegouvfr/rjsf-dsfr";
-import { customizeValidator } from "@rjsf/validator-ajv8";
-import frenchLocalizer from "ajv-i18n/localize/fr";
+import { RJSFSchema } from '@rjsf/utils'
+import FormDSFR from '@codegouvfr/rjsf-dsfr'
+import { customizeValidator } from '@rjsf/validator-ajv8'
+import frenchLocalizer from 'ajv-i18n/localize/fr'
 
-const validator = customizeValidator({}, frenchLocalizer);
+const validator = customizeValidator({}, frenchLocalizer)
 
 const schema: RJSFSchema = {
-  type: "object",
+  type: 'object',
   properties: {
-    nom: { title: "Nom", type: "string", minLength: 2 },
-    prenom: { title: "Prénom", type: "string" },
-    ddn: { title: "Date de naissance", type: "string", format: "date" },
+    nom: { title: 'Nom', type: 'string', minLength: 2 },
+    prenom: { title: 'Prénom', type: 'string' },
+    ddn: { title: 'Date de naissance', type: 'string', format: 'date' },
   },
-  required: ["nom"],
-};
+  required: ['nom'],
+}
 
 export default function Form() {
-  return (
-      <FormDSFR schema={schema} validator={validator} />
-  );
+  return <FormDSFR schema={schema} validator={validator} />
 }
 ```
+
+### UI Options
+
+As described in the [react-jsonschema-form
+documentation](https://rjsf-team.github.io/react-jsonschema-form/docs/api-reference/uiSchema),
+you can customize the form by providing a `uiSchema`.
+In addition to the standard options, you can use the following specific options
+for `rjsf-dsfr`.
+
+> [!TIP]
+> You can have a look to a real world example
+> [here](https://github.com/CatalaLang/catala-web-assets/blob/main/assets/aides_logement_ui_fr.schema.jsx)
+
+#### Global field options
+
+The following options can be set for any field in the `uiSchema`:
+
+- `ui:heading`: set the heading level for the field's title (available values: `h2`, `h3`, `h4`, `h5`, `h6`)
+- `ui:hideTitle`: hide the field's title
+
+#### Specific field options
+
+##### Array fields
+
+The following options can be set for fields of type `array`:
+
+- `ui:addIcon`: set the [DSFR icon id](https://react-dsfr.codegouv.studio/icons) for the _Add_ button
+- `ui:removeIcon`: set the [DSFR icon id](https://react-dsfr.codegouv.studio/icons) for the _Remove_ button
+- `ui:tabLabel`: set the label for the tab in the array field
+
+> [!NOTE]
+> By default, array fields are displayed in a
+> [`Tabs`](https://components.react-dsfr.codegouv.studio/?path=/docs/components-tabs--default)
+> component. Each tab is labeled with the `ui:tabLabel` value and the last tab
+> contains the _Add_ button.
