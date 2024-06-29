@@ -29,13 +29,12 @@ export default function ({
         : value
     onChange(value)
   }
-
   return (
     <Input
+      disabled={disabled}
       nativeInputProps={{
         type,
         required,
-        disabled,
         placeholder,
         autoFocus: autofocus,
         readOnly: readonly,

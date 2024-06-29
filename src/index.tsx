@@ -11,9 +11,10 @@ import defaultValidator from '@rjsf/validator-ajv8'
 import { Button } from '@codegouvfr/react-dsfr/Button'
 
 import WidgetCheckBox from './components/WidgetCheckBox'
+import WidgetRadio from './components/WidgetRadio'
 import WidgetSelect from './components/WidgetSelect'
 import WidgetTextarea from './components/WidgetTextarea'
-//import WidgetPassword from './components/WidgetPassword'
+
 import TemplateArrayField, {
   ArrayFieldUiOptionsDSFR,
 } from './components/TemplateArrayField'
@@ -27,12 +28,20 @@ export type UiSchemaDSFR<
   F extends FormContextType = any,
 > = UiSchema<T, S, F> & FieldUiOptionsDSFR & ArrayFieldUiOptionsDSFR
 
-/** Custom UI options for all fields */
+/** Custom UI options for all fields.
+ * see https://rjsf-team.github.io/react-jsonschema-form/docs/api-reference/uiSchema
+ *
+ */
+
 export type FieldUiOptionsDSFR = {
   /** Set the heading level for the title */
   'ui:heading'?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   /** To hide the title */
   'ui:hideTitle'?: boolean
+  /** Add description */
+  'ui:description'?: string
+  /** Add help icon text after label */
+  'ui:help'?: string
 }
 
 export type FormPropsDSFR<
@@ -81,6 +90,7 @@ export default function FormDSFR<
 
 export const widgetsDSFR = {
   CheckboxWidget: WidgetCheckBox,
+  RadioWidget: WidgetRadio,
   SelectWidget: WidgetSelect,
   TextareaWidget: WidgetTextarea,
 }

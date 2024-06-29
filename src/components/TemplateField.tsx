@@ -41,7 +41,7 @@ export default function ({
   } else {
     title = !schemaTypesToNotRenderTitles.includes(schema.type) ? (
       !uiSchema || !uiSchema['ui:hideTitle'] ? (
-        <LabelWithHint hintText={uiSchema ? uiSchema['ui:help'] : undefined}>
+        <LabelWithHint helpText={uiSchema ? uiSchema['ui:help'] : undefined}>
           <label htmlFor={id} className="fr-label">
             {label + (required ? '*' : '')}
           </label>
@@ -50,9 +50,12 @@ export default function ({
     ) : null
   }
 
+  const description = uiSchema && uiSchema['ui:description']
+
   return (
     <div className={classNames + ' fr-mt-1w'} style={style}>
       {title}
+      {description && <p className="fr-hint-text">{description}</p>}
       {children}
       {errors?.props?.errors != null && (
         <Alert severity="error" description={errors} small />

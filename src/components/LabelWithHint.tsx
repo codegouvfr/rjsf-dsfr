@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { PropsWithChildren } from 'react'
 
 type ElementWithHintProps = {
-  hintText: string | undefined
+  helpText: string | undefined
 } & PropsWithChildren
 
 export default function LabelWithHint({
-  hintText,
+  helpText,
   children,
 }: ElementWithHintProps) {
   const [showHint, setShowHint] = useState(false)
@@ -20,7 +20,7 @@ export default function LabelWithHint({
     <div className="flex flex-col ">
       <div className="flex" style={{ alignItems: 'center' }}>
         {children}
-        {hintText ? (
+        {helpText ? (
           <Button
             type="button"
             iconId={
@@ -36,7 +36,7 @@ export default function LabelWithHint({
           />
         ) : null}
       </div>
-      {showHint ? <p className="fr-hint-text">{hintText}</p> : null}
+      {showHint ? <p className="fr-hint-text">{helpText}</p> : null}
     </div>
   )
 }

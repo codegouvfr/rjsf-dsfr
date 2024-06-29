@@ -38,10 +38,13 @@ export default function WidgetTextarea<
   onChange,
   ...rest
 }: CustomWidgetProps<T, S, F>) {
+  const rows = uiSchema && uiSchema['ui:options'] && uiSchema['ui:options'].rows
+
   return (
     <Input
       textArea
       nativeTextAreaProps={{
+        rows,
         required,
         disabled,
         placeholder,

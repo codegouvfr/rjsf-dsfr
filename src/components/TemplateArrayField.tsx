@@ -47,6 +47,7 @@ export default function ({
                 content: (
                   <>
                     <Button
+                      type="button"
                       iconId={removeIcon}
                       onClick={element.onDropIndexClick(element.index)}
                       size="small"
@@ -65,6 +66,7 @@ export default function ({
                     <>
                       {canAdd && (
                         <Button
+                          type="button"
                           iconId={addIcon}
                           onClick={onAddClick}
                           size="small"
