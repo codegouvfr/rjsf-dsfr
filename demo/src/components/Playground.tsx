@@ -27,7 +27,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
   const [shareURL, setShareURL] = useState<string | null>(null);
   const [theme, setTheme] = useState<string>('dsfr');
   const [subtheme, setSubtheme] = useState<string | null>(null);
-  const [stylesheet, setStylesheet] = useState<string | null>(null);
+  const [stylesheets, setStylesheets] = useState<string[]>([]);
   const [validator, setValidator] = useState<string>('AJV8');
   const [showForm, setShowForm] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettings>({
@@ -46,13 +46,13 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
   const playGroundFormRef = useRef<any>(null);
 
   const onThemeSelected = useCallback(
-    (theme: string, { stylesheet, theme: themeObj }: ThemesType) => {
+    (theme: string, {  stylesheets, theme: themeObj }: ThemesType) => {
       setTheme(theme);
       setSubtheme(null);
       setFormComponent(withTheme(themeObj));
-      setStylesheet(stylesheet);
+      if (stylesheets) setStylesheets(stylesheets);
     },
-    [setTheme, setSubtheme, setFormComponent, setStylesheet]
+    [setTheme, setSubtheme, setFormComponent, setStylesheets]
   );
 
   const load = useCallback(
@@ -145,7 +145,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
         load={load}
         onThemeSelected={onThemeSelected}
         setSubtheme={setSubtheme}
-        setStylesheet={setStylesheet}
+        setStylesheets={setStylesheets}
         setValidator={setValidator}
         setLiveSettings={setLiveSettings}
         setShareURL={setShareURL}
@@ -167,7 +167,7 @@ export default function Playground({ themes, validators }: PlaygroundProps) {
             <DemoFrame
               head={
                 <>
-                  <link rel='stylesheet' id='theme' href={stylesheet || ''} />
+                  {stylesheets?.map(s => <link key={s} rel='stylesheet' id='theme' href={s} />)}
                 </>
               }
               style={{

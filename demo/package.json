@@ -10,7 +10,10 @@
     "build": "rimraf build && cross-env NODE_ENV=production vite build",
     "publish-to-gh-pages": "npm run build && gh-pages --dist dist/",
     "start": "vite --force",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "copy-dsfr-to-public",
+    "prestart": "only-include-used-icons",
+    "prebuild": "only-include-used-icons"
   },
   "lint-staged": {
     "src/**/*.ts?(x)": [

@@ -1,8 +1,24 @@
-import React from 'react'
+import {
+  FormContextType,
+  RJSFSchema,
+  StrictRJSFSchema,
+  WidgetProps,
+} from '@rjsf/utils'
 import Input from '@codegouvfr/react-dsfr/Input'
-import { WidgetProps } from '@rjsf/utils'
 
-export default function ({
+type CustomWidgetProps<
+  T = any,
+  S extends StrictRJSFSchema = RJSFSchema,
+  F extends FormContextType = any,
+> = WidgetProps<T, S, F> & {
+  options: any
+}
+
+export default function WidgetTextarea<
+  T = any,
+  S extends StrictRJSFSchema = RJSFSchema,
+  F extends FormContextType = any,
+>({
   id,
   placeholder,
   value,
@@ -21,19 +37,11 @@ export default function ({
   onFocus,
   onChange,
   ...rest
-}: WidgetProps) {
-  if (type === 'date') {
-    value =
-      uiSchema && uiSchema['ui:currentDate']
-        ? value ?? new Date().toISOString().split('T')[0]
-        : value
-    onChange(value)
-  }
-
+}: CustomWidgetProps<T, S, F>) {
   return (
     <Input
-      nativeInputProps={{
-        type,
+      textArea
+      nativeTextAreaProps={{
         required,
         disabled,
         placeholder,
@@ -41,7 +49,6 @@ export default function ({
         readOnly: readonly,
         value,
         onChange: (e) => onChange(e.target.value),
-        min: rest.schema.minimum,
       }}
       // NOTE: we don't want to display the label here because it is already
       // displayed in the FieldTemplate (which manages the label and hint).

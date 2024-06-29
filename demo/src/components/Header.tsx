@@ -209,7 +209,7 @@ type HeaderProps = {
   load: (data: any) => void
   onThemeSelected: (theme: string, themeObj: ThemesType) => void
   setSubtheme: React.Dispatch<React.SetStateAction<string | null>>
-  setStylesheet: React.Dispatch<React.SetStateAction<string | null>>
+  setStylesheets: React.Dispatch<React.SetStateAction<string[]>>
   setValidator: React.Dispatch<React.SetStateAction<string>>
   setLiveSettings: React.Dispatch<React.SetStateAction<LiveSettings>>
   setShareURL: React.Dispatch<React.SetStateAction<string | null>>
@@ -230,17 +230,17 @@ export default function Header({
   load,
   onThemeSelected,
   setSubtheme,
-  setStylesheet,
+  setStylesheets,
   setValidator,
   setLiveSettings,
   setShareURL,
 }: HeaderProps) {
   const onSubthemeSelected = useCallback(
-    (subtheme: any, { stylesheet }: { stylesheet: any }) => {
+    (subtheme: any, { stylesheets }: { stylesheets: [] }) => {
       setSubtheme(subtheme)
-      setStylesheet(stylesheet)
+      setStylesheets(stylesheets)
     },
-    [setSubtheme, setStylesheet]
+    [setSubtheme, setStylesheets]
   )
 
   const onValidatorSelected = useCallback(

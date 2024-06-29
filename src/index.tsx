@@ -12,6 +12,8 @@ import { Button } from '@codegouvfr/react-dsfr/Button'
 
 import WidgetCheckBox from './components/WidgetCheckBox'
 import WidgetSelect from './components/WidgetSelect'
+import WidgetTextarea from './components/WidgetTextarea'
+//import WidgetPassword from './components/WidgetPassword'
 import TemplateArrayField, {
   ArrayFieldUiOptionsDSFR,
 } from './components/TemplateArrayField'
@@ -80,6 +82,7 @@ export default function FormDSFR<
 export const widgetsDSFR = {
   CheckboxWidget: WidgetCheckBox,
   SelectWidget: WidgetSelect,
+  TextareaWidget: WidgetTextarea,
 }
 
 export const templatesDSFR = {

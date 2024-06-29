@@ -22,6 +22,7 @@ export default function LabelWithHint({
         {children}
         {hintText ? (
           <Button
+            type="button"
             iconId={
               !showHint
                 ? 'fr-icon-information-line'

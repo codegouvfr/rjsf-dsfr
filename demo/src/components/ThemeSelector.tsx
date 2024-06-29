@@ -5,7 +5,7 @@ import { SubthemesType } from './SubthemeSelector';
 
 export interface ThemesType {
   theme: any;
-  stylesheet: string;
+  stylesheets?: string[];
   subthemes?: SubthemesType;
 }
 

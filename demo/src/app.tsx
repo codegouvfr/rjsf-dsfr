@@ -19,12 +19,13 @@ const validators: PlaygroundProps['validators'] = {
 
 const themes: PlaygroundProps['themes'] = {
   dsfr: {
-    stylesheet: '//unpkg.com/@gouvfr/dsfr@1.12.0/dist/dsfr.min.css',
+    stylesheets: ['/dsfr/dsfr.main.css', '/dsfr/utility/icons/icons.css'],
     theme: DSFRTheme,
   },
   'bootstrap-4': {
-    stylesheet:
+    stylesheets: [
       'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css',
+    ],
     theme: Bootstrap4Theme,
   },
 }
