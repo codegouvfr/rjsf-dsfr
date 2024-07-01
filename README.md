@@ -50,6 +50,18 @@ export default function Form() {
 
 ## Notes on writing schemas
 
+### Title
+
+The titles must not be defined inside `"kind"` properties of the object
+definition but just before the `"$ref"` of the calling parent:
+
+```json
+"categorieEquivalenceLoyerD84216": {
+  "title": "Catégorie de personnes résidant en logement-foyer",
+  "$ref": "#/definitions/categorie_equivalence_loyer_allocation_logement_foyer"
+}
+```
+
 ### UI Options
 
 As described in the [react-jsonschema-form
@@ -61,18 +73,6 @@ for `rjsf-dsfr`.
 > [!TIP]
 > You can have a look to a real world example
 > [here](https://github.com/CatalaLang/catala-web-assets/blob/main/assets/aides_logement_ui_fr.schema.jsx)
-
-#### Title
-
-The titles must not be defined inside `"kind"` properties of the object
-definition but just before the `"$ref"` of the calling parent:
-
-```json
-"categorieEquivalenceLoyerD84216": {
-  "title": "Catégorie de personnes résidant en logement-foyer",
-  "$ref": "#/definitions/categorie_equivalence_loyer_allocation_logement_foyer"
-}
-```
 
 #### Global field options
 
