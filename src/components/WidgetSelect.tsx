@@ -8,7 +8,17 @@ import {
 import React from 'react'
 import { SyntheticEvent, useCallback } from 'react'
 
-export default function ({ label, ...props }: WidgetProps) {
+export default function ({
+  label,
+  rawErrors,
+  autofocus,
+  readonly,
+  formContext,
+  hideError,
+  hideLabel,
+  uiSchema,
+  ...props
+}: WidgetProps) {
   const { enumOptions, emptyValue: optEmptyVal } = props.options
 
   const handleChange = useCallback(
