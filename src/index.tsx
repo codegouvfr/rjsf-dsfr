@@ -21,6 +21,7 @@ import TemplateArrayField, {
 import TemplateBaseInput from './components/TemplateBaseInput'
 import TemplateField from './components/TemplateField'
 import TemplateTitleField from './components/TemplateTitleField'
+import ErrorList from './components/ErrorList'
 
 export type UiSchemaDSFR<
   T = any,
@@ -101,16 +102,16 @@ export const templatesDSFR = {
   FieldTemplate: TemplateField,
   ButtonTemplates: { SubmitButton },
   TitleFieldTemplate: TemplateTitleField,
+  ErrorListTemplate: ErrorList,
 }
 
 function SubmitButton({ uiSchema }: SubmitButtonProps) {
   const buttonOptions = uiSchema?.['ui:options']?.submitButtonOptions
+  const buttonProps = uiSchema?.['ui:options']?.submitButtonOptions?.props || {}
   return (
     // NOTE: should the div stay here? Probably not.
     <div className="flex w-full fr-mt-2w">
-      <Button className={buttonOptions?.props?.className ?? ''}>
-        {buttonOptions?.submitText ?? 'Envoyer'}
-      </Button>
+      <Button {...buttonProps}>{buttonOptions?.submitText ?? 'Envoyer'}</Button>
     </div>
   )
 }

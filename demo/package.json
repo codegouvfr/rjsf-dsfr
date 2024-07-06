@@ -30,7 +30,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "^1.9.20",
+    "@codegouvfr/react-dsfr": "^1.9.22",
     "@codegouvfr/rjsf-dsfr": "^0.1.4",
     "@rjsf/bootstrap-4": "^5.18.5",
     "@rjsf/core": "^5.18.4",

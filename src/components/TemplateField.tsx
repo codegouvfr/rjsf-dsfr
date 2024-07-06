@@ -1,7 +1,7 @@
 import { FieldTemplateProps } from '@rjsf/utils'
-import React from 'react'
-import LabelWithHint from './LabelWithHint'
+import LabelWithHelp from './LabelWithHelp'
 import { Alert } from '@codegouvfr/react-dsfr/Alert'
+import Button from '@codegouvfr/react-dsfr/Button'
 
 // TODO: add to props
 const schemaTypesToNotRenderTitles = ['boolean', 'array']
@@ -41,25 +41,24 @@ export default function ({
   } else {
     title = !schemaTypesToNotRenderTitles.includes(schema.type) ? (
       !uiSchema || !uiSchema['ui:hideTitle'] ? (
-        <LabelWithHint helpText={uiSchema ? uiSchema['ui:help'] : undefined}>
-          <label htmlFor={id} className="fr-label">
-            {label + (required ? '*' : '')}
-          </label>
-        </LabelWithHint>
+        <LabelWithHelp
+          helpText={uiSchema ? uiSchema['ui:help'] : undefined}
+          as="label"
+          htmlFor={id}
+          className="fr-label"
+        >
+          {label + (required ? ' (obligatoire)' : '')}
+        </LabelWithHelp>
       ) : null
     ) : null
   }
 
   const description = uiSchema && uiSchema['ui:description']
-
   return (
     <div className={classNames + ' fr-mt-1w'} style={style}>
       {title}
       {description && <p className="fr-hint-text">{description}</p>}
       {children}
-      {errors?.props?.errors != null && (
-        <Alert severity="error" description={errors} small />
-      )}
     </div>
   )
 }

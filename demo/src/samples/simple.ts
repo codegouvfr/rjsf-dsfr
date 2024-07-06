@@ -1,20 +1,20 @@
-import { Sample } from './Sample';
+import { Sample } from './Sample'
 
 const simple: Sample = {
   schema: {
-    title: 'A registration form',
-    description: 'A simple form example.',
+    title: 'Un formulaire simple',
+    description: 'La description du formulaire.',
     type: 'object',
     required: ['firstName', 'lastName'],
     properties: {
       firstName: {
         type: 'string',
-        title: 'First name',
-        default: 'Chuck',
+        title: 'Prénom',
+        default: 'Louise',
       },
       lastName: {
         type: 'string',
-        title: 'Last name',
+        title: 'Nom',
       },
       age: {
         type: 'integer',
@@ -26,12 +26,12 @@ const simple: Sample = {
       },
       password: {
         type: 'string',
-        title: 'Password',
+        title: 'Mot de passe',
         minLength: 3,
       },
       telephone: {
         type: 'string',
-        title: 'Telephone',
+        title: 'Téléphone',
         minLength: 10,
       },
     },
@@ -39,30 +39,27 @@ const simple: Sample = {
   uiSchema: {
     firstName: {
       'ui:autofocus': true,
-      'ui:emptyValue': '',
-      'ui:placeholder': 'ui:emptyValue causes this field to always be valid despite being required',
+      'ui:placeholder': 'Ex: Louise',
       'ui:autocomplete': 'family-name',
-      'ui:enableMarkdownInDescription': true,
-      'ui:description':
-        'Make text **bold** or *italic*. Take a look at other options [here](https://markdown-to-jsx.quantizor.dev/).',
+      'ui:enableMarkdownInDescription': true, // todo
+      'ui:description': 'Description du champ firstName',
     },
     lastName: {
       'ui:autocomplete': 'given-name',
-      'ui:enableMarkdownInDescription': true,
-      'ui:description':
-        'Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> ',
+      'ui:enableMarkdownInDescription': true, // todo
+      'ui:description': 'Description du champ lastName',
     },
     age: {
       'ui:widget': 'updown',
-      'ui:title': 'Age of person',
-      'ui:description': '(earth year)',
+      'ui:title': 'Age de la personne',
+      'ui:description': 'En années',
     },
     bio: {
       'ui:widget': 'textarea',
     },
     password: {
       'ui:widget': 'password',
-      'ui:help': 'Hint: Make it strong!',
+      'ui:help': 'Créez un mot de passe unique pour chaque service !',
     },
     telephone: {
       'ui:options': {
@@ -71,12 +68,12 @@ const simple: Sample = {
     },
   },
   formData: {
-    lastName: 'Norris',
+    lastName: 'Michel',
     age: 75,
-    bio: 'Roundhouse kicking asses since 1940',
+    bio: 'Roundhouse kicking asses since 1830',
     password: 'noneed',
-    telephone: '1-800-KICKASS',
+    telephone: '1-800-000',
   },
-};
+}
 
-export default simple;
+export default simple

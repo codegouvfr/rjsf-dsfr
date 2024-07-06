@@ -1,5 +1,6 @@
 import {
   FormContextType,
+  getUiOptions,
   RJSFSchema,
   StrictRJSFSchema,
   WidgetProps,
@@ -38,7 +39,9 @@ export default function WidgetTextarea<
   onChange,
   ...rest
 }: CustomWidgetProps<T, S, F>) {
-  const rows = uiSchema && uiSchema['ui:options'] && uiSchema['ui:options'].rows
+  const uiOptions = getUiOptions<T, S, F>(uiSchema)
+  const rows = uiOptions.rows || 3
+  const backgroundColor = (uiOptions.backgroundColor as string) || 'auto'
 
   return (
     <Input
@@ -46,13 +49,16 @@ export default function WidgetTextarea<
       nativeTextAreaProps={{
         rows,
         required,
-        disabled,
         placeholder,
         autoFocus: autofocus,
         readOnly: readonly,
         value,
         onChange: (e) => onChange(e.target.value),
+        style: { backgroundColor },
       }}
+      state={rawErrors && rawErrors.length ? 'error' : 'default'}
+      stateRelatedMessage={rawErrors?.length && rawErrors[0]}
+      disabled={disabled}
       // NOTE: we don't want to display the label here because it is already
       // displayed in the FieldTemplate (which manages the label and hint).
       label={undefined}

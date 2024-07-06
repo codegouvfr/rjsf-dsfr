@@ -1,38 +1,45 @@
-import { Sample } from './Sample';
-import { ErrorTransformer } from '@rjsf/utils';
+import { Sample } from './Sample'
+import { ErrorTransformer } from '@rjsf/utils'
 
-function customValidate({ pass1, pass2 }: { pass1: string; pass2: string }, errors: any) {
+function customValidate(
+  { pass1, pass2 }: { pass1: string; pass2: string },
+  errors: any,
+) {
   if (pass1 !== pass2) {
-    errors.pass2.addError("Passwords don't match.");
+    errors.pass2.addError('Les mots de passe ne correspondent pas')
   }
-  return errors;
+  return errors
 }
 
 const transformErrors: ErrorTransformer = (errors) => {
   return errors.map((error) => {
-    if (error.name === 'minimum' && error.schemaPath === '#/properties/age/minimum') {
+    if (
+      error.name === 'minimum' &&
+      error.schemaPath === '#/properties/age/minimum'
+    ) {
       return Object.assign({}, error, {
-        message: 'You need to be 18 because of some legal thing',
-      });
+        message: 'Vous devez avoir au moins 18 ans pour accéder à ce service',
+      })
     }
-    return error;
-  });
-};
+    return error
+  })
+}
 
 const validation: Sample = {
   schema: {
     title: 'Custom validation',
     description:
-      'This form defines custom validation rules checking that the two passwords match. There is also a custom validation message when submitting an age < 18, which can only be seen if HTML5 validation is turned off.',
+      "Ce formulaire ajoute des règles de validation sur l'age et les mots de passes qui doivent correspondre",
     type: 'object',
+    required: ['pass1', 'pass2', 'age'],
     properties: {
       pass1: {
-        title: 'Password',
+        title: 'Mot de passe',
         type: 'string',
         minLength: 3,
       },
       pass2: {
-        title: 'Repeat password',
+        title: 'Répéter le mot de passe',
         type: 'string',
         minLength: 3,
       },
@@ -50,6 +57,6 @@ const validation: Sample = {
   formData: {},
   customValidate,
   transformErrors,
-};
+}
 
-export default validation;
+export default validation

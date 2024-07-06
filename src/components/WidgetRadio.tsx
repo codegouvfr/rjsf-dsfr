@@ -1,9 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react'
 import {
-  ariaDescribedByIds,
-  enumOptionsIsSelected,
   enumOptionsValueForIndex,
-  optionId,
   FormContextType,
   RJSFSchema,
   StrictRJSFSchema,
@@ -12,7 +9,7 @@ import {
 
 import React from 'react'
 import RadioButtons from '@codegouvfr/react-dsfr/RadioButtons'
-import LabelWithHint from './LabelWithHint'
+import LabelWithHelp from './LabelWithHelp'
 
 export default function RadioWidget<
   T = any,
@@ -41,19 +38,7 @@ export default function RadioWidget<
     onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
 
   const inline = Boolean(options && options.inline)
-  console.log({
-    id,
-    options,
-    value,
-    required,
-    disabled,
-    readonly,
-    onChange,
-    onBlur,
-    onFocus,
-    uiSchema,
-    schema,
-  })
+
   return (
     <div style={{ marginTop: '1rem', marginBottom: '-1rem' }}>
       <RadioButtons
@@ -61,13 +46,13 @@ export default function RadioWidget<
           (options &&
             options.enumOptions?.map((option) => ({
               label: (
-                <LabelWithHint
+                <LabelWithHelp
                   helpText={
                     uiSchema !== undefined ? uiSchema['ui:help'] : undefined
                   }
                 >
                   {option.label}
-                </LabelWithHint>
+                </LabelWithHelp>
               ),
               nativeInputProps: {
                 checked: value === option.value,

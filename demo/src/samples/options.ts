@@ -1,61 +1,45 @@
-import { Sample } from './Sample';
+import { fr } from '@codegouvfr/react-dsfr'
+import { Sample } from './Sample'
 
 const optionsSample: Sample = {
   schema: {
-    title: 'A registration form',
-    description: 'A simple form example. Demonstrating ui options',
+    title: 'Un formulaire avec des ui:options',
+    description: 'Description du formulaire',
     type: 'object',
-    required: ['firstName', 'lastName'],
+    required: ['firstName', 'lastName', 'telephone'],
     properties: {
       firstName: {
         type: 'string',
-        title: 'First name',
-        default: 'Chuck',
+        title: 'Prénom',
+        default: 'Louise',
       },
       lastName: {
         type: 'string',
-        title: 'Last name',
+        title: 'Nom',
       },
       telephone: {
         type: 'string',
-        title: 'Telephone',
+        title: 'Téléphone',
         minLength: 10,
       },
     },
   },
   uiSchema: {
     'ui:submitButtonOptions': {
-      submitText: 'Confirm Details',
-      norender: false,
+      submitText: 'Confirmer les détails',
       props: {
         disabled: false,
-        className: 'btn btn-info',
+        style: { color: 'yellow' },
+        iconId: 'fr-icon-account-circle-line',
       },
     },
     firstName: {
-      'ui:autofocus': true,
-      'ui:emptyValue': '',
       'ui:autocomplete': 'family-name',
     },
     lastName: {
-      'ui:title': 'Surname',
-      'ui:emptyValue': '',
+      'ui:autofocus': true,
+      'ui:title': 'Override du prénom',
       'ui:autocomplete': 'given-name',
-    },
-    age: {
-      'ui:widget': 'updown',
-      'ui:title': 'Age of person',
-      'ui:description': '(earthian year)',
-    },
-    bio: {
-      'ui:widget': 'textarea',
-    },
-    password: {
-      'ui:widget': 'password',
-      'ui:help': 'Hint: Make it strong!',
-    },
-    date: {
-      'ui:widget': 'alt-datetime',
     },
     telephone: {
       'ui:options': {
@@ -64,11 +48,9 @@ const optionsSample: Sample = {
     },
   },
   formData: {
-    lastName: 'Norris',
+    lastName: 'Michel',
     age: 75,
-    bio: 'Roundhouse kicking asses since 1940',
-    password: 'noneed',
   },
-};
+}
 
-export default optionsSample;
+export default optionsSample

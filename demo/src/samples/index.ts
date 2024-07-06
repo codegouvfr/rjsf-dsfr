@@ -1,38 +1,37 @@
-import arrays from './arrays';
-import anyOf from './anyOf';
-import oneOf from './oneOf';
-import allOf from './allOf';
-import enumObjects from './enumObjects';
-import nested from './nested';
-import numbers from './numbers';
-import simple from './simple';
-import widgets from './widgets';
-import ordering from './ordering';
-import references from './references';
-import custom from './custom';
-import errors from './errors';
-import examples from './examples';
-import large from './large';
-import date from './date';
-import validation from './validation';
-import files from './files';
-import single from './single';
-import customArray from './customArray';
-import customFieldAnyOf from './customFieldAnyOf';
-import customObject from './customObject';
-import alternatives from './alternatives';
-import propertyDependencies from './propertyDependencies';
-import schemaDependencies from './schemaDependencies';
-import additionalProperties from './additionalProperties';
-import nullable from './nullable';
-import nullField from './null';
-import errorSchema from './errorSchema';
-import defaults from './defaults';
-import options from './options';
-import ifThenElse from './ifThenElse';
-import customField from './customField';
-import { Sample } from './Sample';
-import deepFreeze from 'deep-freeze-es6';
+import arrays from './arrays'
+import anyOf from './anyOf'
+import oneOf from './oneOf'
+import allOf from './allOf'
+import enumObjects from './enumObjects'
+import nested from './nested'
+import numbers from './numbers'
+import simple from './simple'
+import widgets from './widgets'
+import ordering from './ordering'
+import references from './references'
+import custom from './custom'
+import errors from './errors'
+import examples from './examples'
+import large from './large'
+import date from './date'
+import validation from './validation'
+import files from './files'
+import single from './single'
+import customArray from './customArray'
+import customFieldAnyOf from './customFieldAnyOf'
+import alternatives from './alternatives'
+import propertyDependencies from './propertyDependencies'
+import schemaDependencies from './schemaDependencies'
+import additionalProperties from './additionalProperties'
+import nullable from './nullable'
+import nullField from './null'
+import errorSchema from './errorSchema'
+import defaults from './defaults'
+import options from './options'
+import ifThenElse from './ifThenElse'
+import customField from './customField'
+import { Sample } from './Sample'
+import deepFreeze from 'deep-freeze-es6'
 
 const _samples: Record<string, Sample> = {
   Blank: { schema: {}, uiSchema: {}, formData: {} },
@@ -53,7 +52,6 @@ const _samples: Record<string, Sample> = {
   Files: files,
   Single: single,
   'Custom Array': customArray,
-  'Custom Object': customObject,
   Alternatives: alternatives,
   'Property dependencies': propertyDependencies,
   'Schema dependencies': schemaDependencies,
@@ -69,6 +67,6 @@ const _samples: Record<string, Sample> = {
   ErrorSchema: errorSchema,
   Defaults: defaults,
   'Custom Field': customField,
-};
+}
 
-export const samples = deepFreeze(_samples);
+export const samples = deepFreeze(_samples)

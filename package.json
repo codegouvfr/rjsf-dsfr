@@ -54,7 +54,7 @@
     "dts": true
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "^1.9.20",
+    "@codegouvfr/react-dsfr": "^1.9.22",
     "@rjsf/core": "^5.18.4",
     "@rjsf/utils": "^5.18.4",
     "@rjsf/validator-ajv8": "^5.18.4"
