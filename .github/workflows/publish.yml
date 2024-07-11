@@ -60,8 +60,10 @@ jobs:
           ref: ${{ github.ref }}
       - uses: actions/setup-node@v4
         with:
+          cache: yarn
           registry-url: https://registry.npmjs.org/
-      - uses: bahmutov/npm-install@v1
+      - name: Install dependencies
+        run: yarn install --immutable
       - run: yarn build
       - name: Publishing on NPM
         run: |
@@ -93,11 +95,13 @@ jobs:
           ref: ${{ github.ref }}
       - uses: actions/setup-node@v4
         with:
-          registry-url: https://registry.npmjs.org/
-      - uses: bahmutov/npm-install@v1
-        with:
-          working-directory: demo
-      - run: |
+          cache: yarn
+      - name: Install dependencies
+        run: |
+          cd demo
+          yarn install --immutable
+      - name: Publish to GH Pages
+        run: |
           cd demo
           yarn publish-to-gh-pages
         env:
