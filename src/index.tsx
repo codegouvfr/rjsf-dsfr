@@ -11,13 +11,17 @@ import defaultValidator from '@rjsf/validator-ajv8'
 import { Button } from '@codegouvfr/react-dsfr/Button'
 
 import WidgetCheckBox from './components/WidgetCheckBox'
+import WidgetRadio from './components/WidgetRadio'
 import WidgetSelect from './components/WidgetSelect'
+import WidgetTextarea from './components/WidgetTextarea'
+
 import TemplateArrayField, {
   ArrayFieldUiOptionsDSFR,
 } from './components/TemplateArrayField'
 import TemplateBaseInput from './components/TemplateBaseInput'
 import TemplateField from './components/TemplateField'
 import TemplateTitleField from './components/TemplateTitleField'
+import ErrorList from './components/ErrorList'
 
 export type UiSchemaDSFR<
   T = any,
@@ -25,12 +29,20 @@ export type UiSchemaDSFR<
   F extends FormContextType = any,
 > = UiSchema<T, S, F> & FieldUiOptionsDSFR & ArrayFieldUiOptionsDSFR
 
-/** Custom UI options for all fields */
+/** Custom UI options for all fields.
+ * see https://rjsf-team.github.io/react-jsonschema-form/docs/api-reference/uiSchema
+ *
+ */
+
 export type FieldUiOptionsDSFR = {
   /** Set the heading level for the title */
   'ui:heading'?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   /** To hide the title */
   'ui:hideTitle'?: boolean
+  /** Add description */
+  'ui:description'?: string
+  /** Add help icon text after label */
+  'ui:help'?: string
 }
 
 export type FormPropsDSFR<
@@ -79,7 +91,9 @@ export default function FormDSFR<
 
 export const widgetsDSFR = {
   CheckboxWidget: WidgetCheckBox,
+  RadioWidget: WidgetRadio,
   SelectWidget: WidgetSelect,
+  TextareaWidget: WidgetTextarea,
 }
 
 export const templatesDSFR = {
@@ -88,16 +102,16 @@ export const templatesDSFR = {
   FieldTemplate: TemplateField,
   ButtonTemplates: { SubmitButton },
   TitleFieldTemplate: TemplateTitleField,
+  ErrorListTemplate: ErrorList,
 }
 
 function SubmitButton({ uiSchema }: SubmitButtonProps) {
   const buttonOptions = uiSchema?.['ui:options']?.submitButtonOptions
+  const buttonProps = uiSchema?.['ui:options']?.submitButtonOptions?.props || {}
   return (
     // NOTE: should the div stay here? Probably not.
     <div className="flex w-full fr-mt-2w">
-      <Button className={buttonOptions?.props?.className ?? ''}>
-        {buttonOptions?.submitText ?? 'Envoyer'}
-      </Button>
+      <Button {...buttonProps}>{buttonOptions?.submitText ?? 'Envoyer'}</Button>
     </div>
   )
 }

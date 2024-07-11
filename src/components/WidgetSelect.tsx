@@ -1,14 +1,30 @@
 import Select from '@codegouvfr/react-dsfr/Select'
 import {
+  FormContextType,
   RJSFSchema,
+  StrictRJSFSchema,
   WidgetProps,
   enumOptionsIndexForValue,
   enumOptionsValueForIndex,
+  getUiOptions,
 } from '@rjsf/utils'
-import React from 'react'
 import { SyntheticEvent, useCallback } from 'react'
 
-export default function ({ label, ...props }: WidgetProps) {
+export default function <
+  T = any,
+  S extends StrictRJSFSchema = RJSFSchema,
+  F extends FormContextType = any,
+>({
+  label,
+  rawErrors,
+  autofocus,
+  readonly,
+  formContext,
+  hideError,
+  hideLabel,
+  uiSchema,
+  ...props
+}: WidgetProps<T, S, F>) {
   const { enumOptions, emptyValue: optEmptyVal } = props.options
 
   const handleChange = useCallback(
@@ -40,6 +56,9 @@ export default function ({ label, ...props }: WidgetProps) {
   const value =
     typeof selectedIndexes === 'undefined' ? defaultIndex : selectedIndexes
 
+  const uiOptions = getUiOptions<T, S, F>(uiSchema)
+  const backgroundColor = (uiOptions.backgroundColor as string) || 'auto'
+
   return (
     <Select
       nativeSelectProps={{
@@ -48,20 +67,27 @@ export default function ({ label, ...props }: WidgetProps) {
         required: props.required,
         value,
         onChange: handleChange,
+        style: { backgroundColor },
       }}
       // NOTE: we don't want to display the label here because it is already
       // displayed in the FieldTemplate (which manages the label and hint).
       label={undefined}
       {...props}
     >
-      {!props.multiple && props.schema.default === undefined && (
-        <option value="">{props.placeholder}</option>
-      )}
+      {!props.multiple &&
+        props.schema.default === undefined &&
+        props.options.placeholder && (
+          <option value="" disabled>
+            {props.options.placeholder}
+          </option>
+        )}
       {props.options.enumOptions?.map((item, index) => (
         <option key={index} value={String(index)}>
           {item.label}
         </option>
       ))}
+      state={rawErrors && rawErrors.length ? 'error' : 'default'}
+      stateRelatedMessage={rawErrors?.length && rawErrors[0]}
     </Select>
   )
 }

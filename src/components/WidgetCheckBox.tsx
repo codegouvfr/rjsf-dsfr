@@ -1,7 +1,6 @@
-import React from 'react'
 import { WidgetProps } from '@rjsf/utils'
 import Checkbox from '@codegouvfr/react-dsfr/Checkbox'
-import LabelWithHint from './LabelWithHint'
+import LabelWithHelp from './LabelWithHelp'
 
 export default function (props: WidgetProps) {
   return (
@@ -10,15 +9,15 @@ export default function (props: WidgetProps) {
         options={[
           {
             label: (
-              <LabelWithHint
-                hintText={
+              <LabelWithHelp
+                helpText={
                   props.uiSchema !== undefined
                     ? props.uiSchema['ui:help']
                     : undefined
                 }
               >
                 {props.schema.title + (props.required ? '*' : '')}
-              </LabelWithHint>
+              </LabelWithHelp>
             ),
             nativeInputProps: {
               checked: props.value,

@@ -34,7 +34,7 @@ export default function ({
   const tabLabel = uiSchema?.['ui:tabLabel'] ?? 'Element'
   const removeIcon = uiSchema?.['ui:removeIcon'] ?? 'fr-icon-delete-line'
   const addIcon = uiSchema?.['ui:addIcon'] ?? 'fr-icon-add-circle-line'
-
+  console.log('items', items)
   return (
     <div className="form-group field">
       <div className="fr-input-group">
@@ -47,8 +47,12 @@ export default function ({
                 content: (
                   <>
                     <Button
+                      type="button"
                       iconId={removeIcon}
-                      onClick={element.onDropIndexClick(element.index)}
+                      onClick={(e) => {
+                        console.log('io', element)
+                        element.onDropIndexClick(element.index)
+                      }}
                       size="small"
                       priority="secondary"
                     >
@@ -65,6 +69,7 @@ export default function ({
                     <>
                       {canAdd && (
                         <Button
+                          type="button"
                           iconId={addIcon}
                           onClick={onAddClick}
                           size="small"
