@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from 'path'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,7 @@ export default defineConfig({
         '@rjsf/validator-ajv8',
         '@rjsf/bootstrap-4',
       ],
+      plugins: [nodeResolve()],
     },
   },
   resolve: {
