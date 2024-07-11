@@ -1,6 +1,6 @@
 {
   "name": "@codegouvfr/rjsf-dsfr",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "react-jsonschema-form with the DSFR",
   "repository": "git@github.com:codegouvfr/rjsf-dsfr.git",
   "author": "Emile Rolley <emile.rolley@tuta.io>",
