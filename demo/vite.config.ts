@@ -13,7 +13,12 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['@rjsf/core'],
+      external: [
+        '@rjsf/core',
+        '@rjsf/utils',
+        '@rjsf/validator-ajv8',
+        '@rjsf/bootstrap-4',
+      ],
     },
   },
   resolve: {
