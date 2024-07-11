@@ -90,8 +90,8 @@ jobs:
 
   publish_playground:
     runs-on: ubuntu-latest
-    needs:
-      - publish_on_npm
+    # needs:
+    #   - publish_on_npm
     steps:
       - uses: actions/checkout@v4
         with:
