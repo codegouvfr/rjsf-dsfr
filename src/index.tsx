@@ -11,6 +11,7 @@ import defaultValidator from '@rjsf/validator-ajv8'
 import { Button } from '@codegouvfr/react-dsfr/Button'
 
 import WidgetCheckBox from './components/WidgetCheckBox'
+import WidgetCheckBoxes from './components/WidgetCheckBoxes'
 import WidgetRadio from './components/WidgetRadio'
 import WidgetSelect from './components/WidgetSelect'
 import WidgetTextarea from './components/WidgetTextarea'
@@ -89,13 +90,16 @@ export default function FormDSFR<
   )
 }
 
+// https://rjsf-team.github.io/react-jsonschema-form/docs/advanced-customization/custom-widgets-fields
 export const widgetsDSFR = {
   CheckboxWidget: WidgetCheckBox,
+  CheckboxesWidget: WidgetCheckBoxes,
   RadioWidget: WidgetRadio,
   SelectWidget: WidgetSelect,
   TextareaWidget: WidgetTextarea,
 }
 
+// https://rjsf-team.github.io/react-jsonschema-form/docs/advanced-customization/custom-templates
 export const templatesDSFR = {
   ArrayFieldTemplate: TemplateArrayField,
   BaseInputTemplate: TemplateBaseInput,
