@@ -1,5 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react'
 import {
+  enumOptionsIsSelected,
   enumOptionsValueForIndex,
   FormContextType,
   RJSFSchema,
@@ -37,28 +38,41 @@ export default function RadioWidget<
   const _onFocus = ({ target: { value } }: FocusEvent<HTMLInputElement>) =>
     onFocus(id, enumOptionsValueForIndex<S>(value, enumOptions, emptyValue))
 
+  const radioValues = Array.isArray(value) ? value : [value]
   const inline = Boolean(options && options.inline)
-
+  console.log(value, options)
   return (
     <div style={{ marginTop: '1rem', marginBottom: '-1rem' }}>
       <RadioButtons
         options={
           (options &&
-            options.enumOptions?.map((option) => ({
-              label: (
-                <LabelWithHelp
-                  helpText={
-                    uiSchema !== undefined ? uiSchema['ui:help'] : undefined
-                  }
-                >
-                  {option.label}
-                </LabelWithHelp>
-              ),
-              nativeInputProps: {
-                checked: value === option.value,
-                onChange: (e) => onChange(option.value),
-              },
-            }))) ||
+            options.enumOptions?.map((option) => {
+              const checked = enumOptionsIsSelected<S>(
+                option.value,
+                radioValues,
+              )
+              const itemDisabled =
+                Array.isArray(enumDisabled) &&
+                enumDisabled.indexOf(option.value) !== -1
+
+              return {
+                label: (
+                  <LabelWithHelp
+                    helpText={
+                      uiSchema !== undefined ? uiSchema['ui:help'] : undefined
+                    }
+                  >
+                    {option.label}
+                  </LabelWithHelp>
+                ),
+                nativeInputProps: {
+                  checked,
+                  disabled: itemDisabled,
+                  onChange: (e) => onChange(option.value),
+                  value: option.value,
+                },
+              }
+            })) ||
           []
         }
       />

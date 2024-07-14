@@ -23,6 +23,7 @@ export default function <
   hideError,
   hideLabel,
   uiSchema,
+  multiple,
   ...props
 }: WidgetProps<T, S, F>) {
   const { enumOptions, emptyValue: optEmptyVal } = props.options
@@ -74,13 +75,17 @@ export default function <
       label={undefined}
       {...props}
     >
-      {!props.multiple &&
+      {(!props.multiple &&
         props.schema.default === undefined &&
         props.options.placeholder && (
-          <option value="" disabled>
+          <option value="" disabled selected>
             {props.options.placeholder}
           </option>
-        )}
+        )) || (
+        <option value="" disabled selected>
+          Séléctionner une option
+        </option>
+      )}
       {props.options.enumOptions?.map((item, index) => (
         <option key={index} value={String(index)}>
           {item.label}
