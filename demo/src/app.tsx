@@ -19,7 +19,7 @@ const validators: PlaygroundProps['validators'] = {
 
 const themes: PlaygroundProps['themes'] = {
   dsfr: {
-    stylesheets: ['/dsfr/dsfr.main.css', '/dsfr/utility/icons/icons.css'],
+    stylesheets: ['./dsfr/dsfr.main.css', './dsfr/utility/icons/icons.css'],
     theme: DSFRTheme,
   },
   'bootstrap-4': {

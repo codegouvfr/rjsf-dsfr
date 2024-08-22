@@ -14,6 +14,8 @@ with the components from
 > If you want to use this library, please [open an
 > issue](https://github.com/codegouvfr/rjsf-dsfr/issues) to discuss your needs!
 
+👉 See a demo at : https://codegouvfr.github.io/rjsf-dsfr
+
 ## Installation
 
 ```bash

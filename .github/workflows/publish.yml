@@ -97,15 +97,16 @@ jobs:
         with:
           ref: ${{ github.ref }}
       - uses: actions/setup-node@v4
-        with:
-          cache: yarn
-      - name: Install dependencies
+      - name: Build demo
         run: |
           cd demo
           yarn install --immutable
-      - name: Publish to GH Pages
-        run: |
-          cd demo
-          yarn publish-to-gh-pages
+          yarn build
+          touch dist/.nojekyll
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: demo/dist
