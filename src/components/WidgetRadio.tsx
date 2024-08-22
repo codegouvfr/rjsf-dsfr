@@ -44,6 +44,7 @@ export default function RadioWidget<
   return (
     <div style={{ marginTop: '1rem', marginBottom: '-1rem' }}>
       <RadioButtons
+        orientation={inline ? 'horizontal' : 'vertical'}
         options={
           (options &&
             options.enumOptions?.map((option) => {

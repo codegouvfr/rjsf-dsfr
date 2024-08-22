@@ -59,7 +59,7 @@ export default function <
 
   const uiOptions = getUiOptions<T, S, F>(uiSchema)
   const backgroundColor = (uiOptions.backgroundColor as string) || 'auto'
-
+  const placeholder = uiOptions.placeholder || props.options.placeholder
   return (
     <Select
       nativeSelectProps={{
@@ -75,13 +75,11 @@ export default function <
       label={undefined}
       {...props}
     >
-      {(!props.multiple &&
-        props.schema.default === undefined &&
-        props.options.placeholder && (
-          <option value="" disabled selected>
-            {props.options.placeholder}
-          </option>
-        )) || (
+      {(!props.multiple && placeholder && (
+        <option value="" disabled selected>
+          {placeholder}
+        </option>
+      )) || (
         <option value="" disabled selected>
           Séléctionner une option
         </option>

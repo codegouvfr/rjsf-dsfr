@@ -1,4 +1,4 @@
-import { Sample } from './Sample';
+import { Sample } from './Sample'
 
 const widgets: Sample = {
   schema: {
@@ -146,19 +146,19 @@ const widgets: Sample = {
         onChange,
         options,
       }: {
-        value: any;
-        onChange: (value: any) => void;
-        options: { backgroundColor: string };
+        value: any
+        onChange: (value: any) => void
+        options: { backgroundColor: string }
       }) => {
-        const { backgroundColor } = options;
+        const { backgroundColor } = options
         return (
           <input
-            className='form-control'
+            className="custom-classname"
             onChange={(event) => onChange(event.target.value)}
             style={{ backgroundColor }}
             value={value}
           />
-        );
+        )
       },
       'ui:options': {
         backgroundColor: 'yellow',
@@ -170,14 +170,17 @@ const widgets: Sample = {
         onChange,
         options,
       }: {
-        value: any;
-        onChange: (value: any) => void;
-        options: { enumOptions: { label: string; value: any }[]; backgroundColor: string };
+        value: any
+        onChange: (value: any) => void
+        options: {
+          enumOptions: { label: string; value: any }[]
+          backgroundColor: string
+        }
       }) => {
-        const { enumOptions, backgroundColor } = options;
+        const { enumOptions, backgroundColor } = options
         return (
           <select
-            className='form-control'
+            className="form-control"
             style={{ backgroundColor }}
             value={value}
             onChange={(event) => onChange(event.target.value)}
@@ -187,10 +190,10 @@ const widgets: Sample = {
                 <option key={i} value={value}>
                   {label}
                 </option>
-              );
+              )
             })}
           </select>
-        );
+        )
       },
       'ui:options': {
         backgroundColor: 'pink',
@@ -213,6 +216,6 @@ const widgets: Sample = {
     },
     secret: "I'm a hidden string.",
   },
-};
+}
 
-export default widgets;
+export default widgets
