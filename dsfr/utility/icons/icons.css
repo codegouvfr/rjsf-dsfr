@@ -1,0 +1,79 @@
+.fr-icon-account-circle-line::before,
+.fr-icon-account-circle-line::after {
+    -webkit-mask-image: url("../../icons/user/account-circle-line.svg");
+    mask-image: url("../../icons/user/account-circle-line.svg");
+}
+
+.fr-icon-add-circle-line::before,
+.fr-icon-add-circle-line::after {
+    -webkit-mask-image: url("../../icons/system/add-circle-line.svg");
+    mask-image: url("../../icons/system/add-circle-line.svg");
+}
+
+.fr-icon-information-fill::before,
+.fr-icon-information-fill::after {
+    -webkit-mask-image: url("../../icons/system/information-fill.svg");
+    mask-image: url("../../icons/system/information-fill.svg");
+}
+
+.fr-icon-information-line::before,
+.fr-icon-information-line::after {
+    -webkit-mask-image: url("../../icons/system/information-line.svg");
+    mask-image: url("../../icons/system/information-line.svg");
+}
+
+.fr-icon-delete-line::before,
+.fr-icon-delete-line::after {
+    -webkit-mask-image: url("../../icons/system/delete-bin-line.svg");
+    mask-image: url("../../icons/system/delete-bin-line.svg");
+}
+
+.fr-icon-theme-fill::before,
+.fr-icon-theme-fill::after {
+    -webkit-mask-image: url("../../icons/system/fr--theme-fill.svg");
+    mask-image: url("../../icons/system/fr--theme-fill.svg");
+}
+
+.fr-icon-arrow-right-line::before,
+.fr-icon-arrow-right-line::after {
+    -webkit-mask-image: url("../../icons/system/arrow-right-line.svg");
+    mask-image: url("../../icons/system/arrow-right-line.svg");
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .fr-icon-account-circle-line::before,
+    .fr-icon-account-circle-line::after {
+        background-image: url("../../icons/user/account-circle-line.svg");
+    }
+    
+    .fr-icon-add-circle-line::before,
+    .fr-icon-add-circle-line::after {
+        background-image: url("../../icons/system/add-circle-line.svg");
+    }
+    
+    .fr-icon-information-fill::before,
+    .fr-icon-information-fill::after {
+        background-image: url("../../icons/system/information-fill.svg");
+    }
+    
+    .fr-icon-information-line::before,
+    .fr-icon-information-line::after {
+        background-image: url("../../icons/system/information-line.svg");
+    }
+    
+    .fr-icon-delete-line::before,
+    .fr-icon-delete-line::after {
+        background-image: url("../../icons/system/delete-bin-line.svg");
+    }
+    
+    .fr-icon-theme-fill::before,
+    .fr-icon-theme-fill::after {
+        background-image: url("../../icons/system/fr--theme-fill.svg");
+    }
+    
+    .fr-icon-arrow-right-line::before,
+    .fr-icon-arrow-right-line::after {
+        background-image: url("../../icons/system/arrow-right-line.svg");
+    }
+    
+}
