@@ -75,11 +75,13 @@ export default function <
       label={undefined}
       {...props}
     >
-      {(!props.multiple && placeholder && (
+      {!props.multiple && placeholder 
+      ? (
         <option value="" disabled selected>
           {placeholder}
         </option>
-      )) || (
+      )
+      : (
         <option value="" disabled selected>
           Séléctionner une option
         </option>
