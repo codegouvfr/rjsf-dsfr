@@ -12,7 +12,6 @@ import Checkbox from '@codegouvfr/react-dsfr/Checkbox'
 import LabelWithHelp from './LabelWithHelp'
 import { ChangeEvent, FocusEvent } from 'react'
 
-//export default function (props: WidgetProps) {
 
 export default function CheckboxesWidget<
   T = any,
