@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FrIconClassName, RiIconClassName } from '@codegouvfr/react-dsfr'
 import Button from '@codegouvfr/react-dsfr/Button'
 import Tabs from '@codegouvfr/react-dsfr/Tabs'
@@ -30,59 +30,69 @@ export default function ({
   items,
   canAdd,
   onAddClick,
+  registry,
 }: ArrayFieldTemplateProps & { uiSchema?: UiSchemaDSFR }) {
+  const [selectedTabId, setSelectedTabId] = useState('tab0')
   const tabLabel = uiSchema?.['ui:tabLabel'] ?? 'Element'
   const removeIcon = uiSchema?.['ui:removeIcon'] ?? 'fr-icon-delete-line'
   const addIcon = uiSchema?.['ui:addIcon'] ?? 'fr-icon-add-circle-line'
-  console.log('items', items)
+
+  // ensure no exception when last selected tab has been destroyed
+  const selectedIndex = Math.min(
+    items.length - 1,
+    parseInt(selectedTabId.replace(/^tab(\d+)$/, '$1')),
+  )
+
+  const tabContent =
+    (items.length && (
+      <>
+        <Button
+          type="button"
+          iconId={removeIcon}
+          onClick={(e) => {
+            items[selectedIndex].onDropIndexClick(selectedIndex)()
+          }}
+          size="small"
+          priority="secondary"
+        >
+          Supprimer
+        </Button>
+        {items[selectedIndex].children}
+      </>
+    )) ||
+    null
+
+  const onTabChange = (id: string) => {
+    if (id === 'add') {
+      onAddClick()
+      setSelectedTabId(`tab${items.length}`)
+      return
+    }
+    setSelectedTabId(id)
+  }
+
   return (
     <div className="form-group field">
       <div className="fr-input-group">
         <label className="fr-label">{title}</label>
         <div className="fr-input-wrap">
           <Tabs
+            onTabChange={onTabChange}
+            selectedTabId={selectedTabId}
             tabs={items
               .map((element) => ({
                 label: `${tabLabel} ${element.index + 1}`,
-                content: (
-                  <>
-                    <Button
-                      type="button"
-                      iconId={removeIcon}
-                      onClick={(e) => {
-                        console.log('io', element)
-                        element.onDropIndexClick(element.index)
-                      }}
-                      size="small"
-                      priority="secondary"
-                    >
-                      Supprimer
-                    </Button>
-                    {element.children}
-                  </>
-                ),
+                tabId: `tab${element.index}`,
               }))
               .concat([
                 {
                   label: `Ajouter`,
-                  content: (
-                    <>
-                      {canAdd && (
-                        <Button
-                          type="button"
-                          iconId={addIcon}
-                          onClick={onAddClick}
-                          size="small"
-                          priority="secondary"
-                        >
-                          Ajouter
-                        </Button>
-                      )}
-                    </>
-                  ),
+                  tabId: 'add',
                 },
               ])}
-          />
+          >
+            {selectedTabId !== 'add' && tabContent}
+          </Tabs>
         </div>
       </div>
     </div>
