@@ -40,7 +40,6 @@ export default function RadioWidget<
 
   const radioValues = Array.isArray(value) ? value : [value]
   const inline = Boolean(options && options.inline)
-  console.log(value, options)
   return (
     <div style={{ marginTop: '1rem', marginBottom: '-1rem' }}>
       <RadioButtons
