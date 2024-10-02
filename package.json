@@ -60,7 +60,7 @@
     "@rjsf/validator-ajv8": "^5.18.4"
   },
   "peerDependencies": {
-    "react": "^18.3.3"
+    "react": "^18.3.1"
   },
   "publishConfig": {
     "access": "public"
